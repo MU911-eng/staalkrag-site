@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Staalkrag Agency — We Build Client Machines for Trade Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --charcoal: #111111;
+    --steel-dark: #1a1a1a;
+    --steel: #252525;
+    --steel-mid: #333333;
+    --steel-light: #555555;
+    --silver: #9ca3af;
+    --silver-bright: #d1d5db;
+    --white: #f8f8f8;
+    --blue: #2563eb;
+    --blue-bright: #3b82f6;
+    --blue-glow: rgba(59,130,246,0.15);
+    --gold: #b8860b;
+    --accent: #e2e8f0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ============ NOISE TEXTURE OVERLAY ============ */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    padding: 0 5%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: all 0.3s;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--blue-bright);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 0.5rem 1.4rem !important;
+    border-radius: 2px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--blue-bright) !important; color: var(--white) !important; }
+
+  /* ============ HERO ============ */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(37,99,235,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(37,99,235,0.1);
+    border: 1px solid rgba(37,99,235,0.3);
+    color: var(--blue-bright);
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--blue-bright);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  .hero-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: var(--blue-bright);
+    display: block;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--silver);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+    font-weight: 300;
+  }
+
+  .hero-sub strong {
+    color: var(--silver-bright);
+    font-weight: 600;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--blue);
+    color: var(--white);
+    padding: 1rem 2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .btn-primary:hover {
+    background: var(--blue-bright);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(59,130,246,0.4);
+  }
+
+  .btn-primary:hover::after { opacity: 1; }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--silver-bright);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--white);
+    border-color: var(--white);
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-stat-card {
+    background: var(--steel-dark);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .hero-stat-card:hover {
+    transform: translateX(-4px);
+    border-color: rgba(59,130,246,0.4);
+  }
+
+  .hero-stat-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--blue-bright);
+  }
+
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .stat-number span {
+    color: var(--blue-bright);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    margin-top: 0.25rem;
+  }
+
+  /* ============ SECTION STYLES ============ */
+  section {
+    padding: 100px 5%;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--blue-bright);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 1.25rem;
+  }
+
+  .section-sub {
+    font-size: 1.05rem;
+    color: var(--silver);
+    max-width: 560px;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ============ TICKER ============ */
+  .ticker-wrap {
+    background: var(--blue);
+    padding: 0.8rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    animation: ticker 30s linear infinite;
+  }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-right: 3rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .ticker-dot {
+    width: 4px;
+    height: 4px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============ PROBLEM SECTION ============ */
+  #problem {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #problem::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .problem-statement {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  .problem-statement em {
+    font-style: normal;
+    color: var(--silver-bright);
+    display: block;
+  }
+
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--steel-dark);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 3px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .pain-item:hover {
+    border-color: rgba(220,38,38,0.3);
+    transform: translateX(4px);
+  }
+
+  .pain-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .pain-item h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+  }
+
+  .pain-item p {
+    font-size: 0.9rem;
+    color: var(--silver);
+    line-height: 1.5;
+  }
+
+  /* ============ SOLUTION ============ */
+  #solution {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .solution-header .section-label {
+    justify-content: center;
+  }
+
+  .solution-header .section-label::before { display: none; }
+
+  .am-callout {
+    display: inline-block;
+    margin: 2rem auto 0;
+    background: linear-gradient(135deg, var(--steel-dark), var(--steel));
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 4px;
+    padding: 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .am-callout::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--blue-bright), var(--blue));
+  }
+
+  .am-callout h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .am-callout p {
+    color: var(--silver);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .system-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .step-card {
+    background: var(--steel-dark);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .step-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+
+  .step-card:hover {
+    border-color: rgba(59,130,246,0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+
+  .step-card:hover::after { transform: scaleX(1); }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    top: 0.5rem; right: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .step-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .step-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .step-card p {
+    font-size: 0.9rem;
+    color: var(--silver);
+    line-height: 1.65;
+  }
+
+  /* ============ SERVICES ============ */
+  #services {
+    background: var(--charcoal);
+  }
+
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .service-card {
+    background: var(--charcoal);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-card:hover {
+    background: var(--steel-dark);
+  }
+
+  .service-card:hover .service-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  .service-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--blue-bright);
+    margin-bottom: 1.25rem;
+  }
+
+  .service-icon-wrap {
+    width: 52px;
+    height: 52px;
+    background: rgba(37,99,235,0.12);
+    border: 1px solid rgba(37,99,235,0.25);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-card p {
+    font-size: 0.92rem;
+    color: var(--silver);
+    line-height: 1.7;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+  }
+
+  .service-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--silver);
+    border-radius: 2px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .service-arrow {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: var(--blue-bright);
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: translate(-6px, 6px);
+    transition: all 0.3s;
+  }
+
+  /* ============ INDUSTRIES ============ */
+  #industries {
+    background: var(--black);
+  }
+
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .industry-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.35s;
+    background: var(--steel-dark);
+  }
+
+  .industry-card:hover {
+    border-color: var(--blue-bright);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,130,246,0.1);
+  }
+
+  .industry-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(59,130,246,0.07) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.35s;
+  }
+
+  .industry-card:hover::before { opacity: 1; }
+
+  .industry-icon {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .industry-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .industry-card p {
+    font-size: 0.88rem;
+    color: var(--silver);
+    line-height: 1.7;
+  }
+
+  .industry-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-top: 1.25rem;
+  }
+
+  .pill {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.2);
+    color: rgba(147,197,253,0.8);
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* ============ RESULTS ============ */
+  #results {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .results-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 3rem;
+  }
+
+  .metric-box {
+    background: var(--steel-dark);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .metric-box:hover { background: var(--steel); }
+
+  .metric-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--blue-bright);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.25rem;
+  }
+
+  .metric-label {
+    font-size: 0.78rem;
+    color: var(--silver);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .testimonial {
+    background: var(--steel-dark);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .testimonial:hover {
+    border-color: rgba(59,130,246,0.3);
+    transform: translateY(-3px);
+  }
+
+  .testimonial::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: rgba(59,130,246,0.12);
+    line-height: 1;
+  }
+
+  .testimonial p {
+    font-size: 0.95rem;
+    color: var(--silver-bright);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), #1d4ed8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+
+  .author-role {
+    font-size: 0.78rem;
+    color: var(--silver);
+    letter-spacing: 0.06em;
+  }
+
+  .stars {
+    color: #f59e0b;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  /* ============ URGENCY BLOCK ============ */
+  .urgency-block {
+    margin-top: 3rem;
+  }
+
+  .urgency-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    background: var(--steel-dark);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 4px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .urgency-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #dc2626, var(--blue-bright));
+  }
+
+  .urgency-tag {
+    display: inline-block;
+    background: rgba(220,38,38,0.12);
+    border: 1px solid rgba(220,38,38,0.3);
+    color: #f87171;
+    padding: 0.35rem 0.9rem;
+    border-radius: 2px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .urgency-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .urgency-body {
+    font-size: 0.95rem;
+    color: var(--silver);
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .urgency-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .urgency-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.92rem;
+    color: var(--silver-bright);
+    font-weight: 400;
+  }
+
+  .check {
+    color: var(--blue-bright);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .urgency-stat-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .urgency-stat {
+    padding: 1.5rem 0;
+  }
+
+  .urgency-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    line-height: 1;
+    color: var(--blue-bright);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .urgency-stat-label {
+    font-size: 0.85rem;
+    color: var(--silver);
+    line-height: 1.55;
+  }
+
+  .urgency-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+  }
+
+  /* ============ PROCESS ============ */
+  #process {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-header {
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .process-header .section-label { justify-content: center; }
+  .process-header .section-label::before { display: none; }
+
+  .am-system-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    letter-spacing: 0.15em;
+    color: var(--blue-bright);
+    margin-top: 1rem;
+    text-transform: uppercase;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    gap: 0;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 52px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--blue-bright), var(--blue));
+    z-index: 0;
+  }
+
+  .process-step {
+    padding: 0 1.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-step-num {
+    width: 64px;
+    height: 64px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--white);
+    margin: 0 auto 1.5rem;
+    border: 3px solid var(--black);
+    box-shadow: 0 0 0 2px var(--blue);
+    transition: all 0.3s;
+  }
+
+  .process-step:hover .process-step-num {
+    background: var(--blue-bright);
+    box-shadow: 0 0 0 2px var(--blue-bright), 0 0 20px rgba(59,130,246,0.5);
+    transform: scale(1.1);
+  }
+
+  .process-step h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .process-step p {
+    font-size: 0.88rem;
+    color: var(--silver);
+    line-height: 1.65;
+  }
+
+  /* ============ CTA ============ */
+  #cta {
+    background: linear-gradient(135deg, #0a1628 0%, #0f172a 40%, #1e3a5f 100%);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  #cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(37,99,235,0.2) 0%, transparent 70%);
+  }
+
+  .cta-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-inner .section-label {
+    justify-content: center;
+  }
+
+  .cta-inner .section-label::before { display: none; }
+
+  .cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin: 1rem 0;
+  }
+
+  .cta-title em {
+    font-style: normal;
+    color: var(--blue-bright);
+  }
+
+  .cta-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-note {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: #050505;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 4rem 5% 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .footer-logo span { color: var(--blue-bright); }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: var(--silver);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-link {
+    width: 36px;
+    height: 36px;
+    background: var(--steel-dark);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .social-link:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: var(--white);
+  }
+
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--silver-bright);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer-col a {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--white); }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    color: var(--silver);
+    font-size: 0.9rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .contact-item strong {
+    color: var(--white);
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-bottom p {
+    font-size: 0.8rem;
+    color: var(--steel-light);
+  }
+
+  .footer-brand-statement {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    color: var(--steel-light);
+    text-transform: uppercase;
+  }
+
+  /* ============ DIVIDER ============ */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    margin: 0;
+  }
+
+  /* ============ SCROLL ANIMATIONS ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ============ HAMBURGER / MOBILE NAV ============ */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .problem-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .system-steps { grid-template-columns: repeat(2, 1fr); }
+    .urgency-inner { grid-template-columns: 1fr; }
+    .services-header { grid-template-columns: 1fr; }
+    .results-header { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); gap: 3rem; }
+    .process-steps::before { display: none; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 70px 5%; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .industries-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+    .process-steps { grid-template-columns: 1fr; }
+    .am-callout { padding: 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-headline { font-size: 2.8rem; }
+    .metrics-row { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">STAAL<span>KRAG</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#process">Our System</a></li>
+    <li><a href="#cta" class="nav-cta">Book a Call</a></li>
+  </ul>
+  <div class="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge reveal">South Africa's Trade Industry Growth Agency</div>
+      <h1 class="hero-headline reveal reveal-delay-1">
+        We Build
+        <em>Client Machines</em>
+        For Trade Businesses
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Staalkrag becomes your <strong>full marketing department</strong> — generating a consistent flow of qualified leads so you can focus on what you do best. No guesswork. Just a system that works.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#cta" class="btn-primary">
+          Get More Clients →
+        </a>
+        <a href="#process" class="btn-secondary">See How It Works</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stat-card reveal reveal-delay-1">
+        <div class="stat-number">340<span>+</span></div>
+        <div class="stat-label">Qualified Leads Generated Per Month</div>
+      </div>
+      <div class="hero-stat-card reveal reveal-delay-2">
+        <div class="stat-number">6<span>×</span></div>
+        <div class="stat-label">Average Return on Ad Spend</div>
+      </div>
+      <div class="hero-stat-card reveal reveal-delay-3">
+        <div class="stat-number">90<span>days</span></div>
+        <div class="stat-label">To a Fully Running Client Machine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Panel Beaters <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Plumbers <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Electricians <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Auto Detailers <span class="ticker-dot"></span></span>
+    <span class="ticker-item">HVAC Companies <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Builders <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Mechanics <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Windscreen Companies <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Industrial Services <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Panel Beaters <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Plumbers <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Electricians <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Auto Detailers <span class="ticker-dot"></span></span>
+    <span class="ticker-item">HVAC Companies <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Builders <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Mechanics <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Windscreen Companies <span class="ticker-dot"></span></span>
+    <span class="ticker-item">Industrial Services <span class="ticker-dot"></span></span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="section-inner">
+    <div class="problem-grid">
+      <div class="reveal">
+        <div class="section-label">The Real Problem</div>
+        <h2 class="problem-statement">
+          Your Business
+          <em>Deserves Better</em>
+          Than Waiting For Referrals
+        </h2>
+        <p class="section-sub">
+          Most trade businesses are incredible at their craft — but invisible online. Without a proper marketing system, growth is unpredictable, slow, and stressful.
+        </p>
+      </div>
+      <ul class="pain-list">
+        <li class="pain-item reveal reveal-delay-1">
+          <span class="pain-icon">📉</span>
+          <div>
+            <h4>Inconsistent Lead Flow</h4>
+            <p>One month you're slammed, the next you're chasing quotes. Referrals are unreliable and leave you vulnerable.</p>
+          </div>
+        </li>
+        <li class="pain-item reveal reveal-delay-2">
+          <span class="pain-icon">💸</span>
+          <div>
+            <h4>Revenue Left on the Table</h4>
+            <p>Your competitors are running ads and capturing clients that should be yours. Every day without a system is lost revenue.</p>
+          </div>
+        </li>
+        <li class="pain-item reveal reveal-delay-3">
+          <span class="pain-icon">🎯</span>
+          <div>
+            <h4>No Marketing Department</h4>
+            <p>You wear too many hats. Marketing gets neglected because there's no system, no strategy, and no one to own it.</p>
+          </div>
+        </li>
+        <li class="pain-item reveal reveal-delay-4">
+          <span class="pain-icon">⏳</span>
+          <div>
+            <h4>Wasted Time & Budget</h4>
+            <p>Boosting posts and trying different things with no results. Marketing spend without strategy is just guessing.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="section-inner">
+    <div class="solution-header reveal">
+      <div class="section-label">The Staalkrag Solution</div>
+      <h2 class="section-title">Your Done-For-You<br>Marketing Department</h2>
+      <p class="section-sub" style="margin: 0 auto;">We don't just run ads. We build an entire system designed to attract, convert, and retain clients — consistently, month after month.</p>
+      <div class="am-callout">
+        <h3>⚙️ The Attention Mansion System™</h3>
+        <p>Our proprietary 4-stage framework that turns attention into booked clients — built specifically for trade and service businesses.</p>
+      </div>
+    </div>
+
+    <div class="system-steps">
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-icon">📡</div>
+        <h3>Content — Capture Attention</h3>
+        <p>We create strategic short-form video content and social media assets that position you as the go-to expert in your market. People buy from who they know and trust.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-icon">🎯</div>
+        <h3>Ads — Generate Leads</h3>
+        <p>Targeted Meta and Google ad campaigns that reach your ideal customers at the exact moment they need your services — and drive them to take action.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-icon">🔁</div>
+        <h3>Funnels — Convert Leads</h3>
+        <p>Purpose-built landing pages and conversion funnels that turn clicks into enquiries. No more sending traffic to a website that doesn't convert.</p>
+      </div>
+      <div class="step-card reveal reveal-delay-4">
+        <div class="step-num">04</div>
+        <div class="step-icon">💬</div>
+        <h3>CRM — Close & Retain</h3>
+        <p>Automated WhatsApp follow-up and CRM systems ensure every lead is nurtured into a paying client — and every client comes back. No lead left behind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div class="reveal">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Everything You Need.<br>Nothing You Don't.</h2>
+      </div>
+      <div class="reveal">
+        <p class="section-sub">We handle the full marketing stack — so you can focus on running your business and delivering results for your customers.</p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-arrow">↗</span>
+        <div class="service-num">01 — Core Service</div>
+        <div class="service-icon-wrap">🎯</div>
+        <h3>Lead Generation</h3>
+        <p>We run high-converting ad campaigns on Meta and Google that put your business in front of people actively looking for your services — and turn them into real enquiries.</p>
+        <div class="service-tags">
+          <span class="service-tag">Facebook Ads</span>
+          <span class="service-tag">Google Ads</span>
+          <span class="service-tag">Retargeting</span>
+          <span class="service-tag">Audience Strategy</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-arrow">↗</span>
+        <div class="service-num">02 — Core Service</div>
+        <div class="service-icon-wrap">🎬</div>
+        <h3>Content Creation</h3>
+        <p>Short-form video content, reels, and social media branding that builds your authority and keeps you top-of-mind in your industry. We make your business look like the obvious choice.</p>
+        <div class="service-tags">
+          <span class="service-tag">Short-Form Video</span>
+          <span class="service-tag">Social Media</span>
+          <span class="service-tag">Brand Identity</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-arrow">↗</span>
+        <div class="service-num">03 — Core Service</div>
+        <div class="service-icon-wrap">⚡</div>
+        <h3>Websites & Funnels</h3>
+        <p>We build lean, high-converting landing pages and sales funnels optimised to turn visitors into paying customers — not just pretty websites that don't do anything.</p>
+        <div class="service-tags">
+          <span class="service-tag">Landing Pages</span>
+          <span class="service-tag">Sales Funnels</span>
+          <span class="service-tag">Conversion Optimisation</span>
+        </div>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-arrow">↗</span>
+        <div class="service-num">04 — Core Service</div>
+        <div class="service-icon-wrap">💬</div>
+        <h3>CRM & WhatsApp Integration</h3>
+        <p>Never lose a lead again. We set up automated follow-up systems via WhatsApp and CRM tools that nurture enquiries and convert them into booked jobs — on autopilot.</p>
+        <div class="service-tags">
+          <span class="service-tag">WhatsApp Automation</span>
+          <span class="service-tag">CRM Setup</span>
+          <span class="service-tag">Lead Nurturing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="section-inner">
+    <div class="reveal" style="text-align: center; margin-bottom: 0.5rem;">
+      <div class="section-label" style="justify-content: center;"><span style="width:24px;height:2px;background:var(--blue-bright);display:block;"></span> Industries We Serve</div>
+      <h2 class="section-title">We Speak Your Language</h2>
+      <p class="section-sub" style="margin: 0 auto;">We work exclusively with trade and service businesses. We understand your market, your customers, and what it takes to win in your industry.</p>
+    </div>
+
+    <div class="industries-grid">
+      <div class="industry-card reveal reveal-delay-1">
+        <span class="industry-icon">🚗</span>
+        <h3>Automotive</h3>
+        <p>From panel beaters to detailing shops, we help automotive businesses fill their bays and grow their client base with targeted local marketing that drives real results.</p>
+        <div class="industry-pills">
+          <span class="pill">Panel Beaters</span>
+          <span class="pill">Mechanics</span>
+          <span class="pill">Detailing</span>
+          <span class="pill">Windscreen</span>
+          <span class="pill">Spray Painting</span>
+        </div>
+      </div>
+
+      <div class="industry-card reveal reveal-delay-2">
+        <span class="industry-icon">🔧</span>
+        <h3>Trade Services</h3>
+        <p>Plumbers, electricians, and builders need a steady flow of quality jobs. We build systems that attract the right residential and commercial clients — consistently.</p>
+        <div class="industry-pills">
+          <span class="pill">Plumbers</span>
+          <span class="pill">Electricians</span>
+          <span class="pill">Builders</span>
+          <span class="pill">Roofing</span>
+          <span class="pill">Tiling</span>
+        </div>
+      </div>
+
+      <div class="industry-card reveal reveal-delay-3">
+        <span class="industry-icon">⚙️</span>
+        <h3>Industrial Services</h3>
+        <p>HVAC companies, commercial refrigeration, and equipment maintenance businesses trust us to generate high-value B2B leads and position them as industry leaders.</p>
+        <div class="industry-pills">
+          <span class="pill">HVAC</span>
+          <span class="pill">Refrigeration</span>
+          <span class="pill">Equipment Maintenance</span>
+          <span class="pill">Engineering</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="section-inner">
+    <div class="results-header">
+      <div class="reveal">
+        <div class="section-label">Proof It Works</div>
+        <h2 class="section-title">Real Businesses.<br>Real Results.</h2>
+      </div>
+      <div class="reveal">
+        <p class="section-sub">We don't just talk about marketing — we deliver measurable outcomes. Here's what the Attention Mansion System™ produces for our clients.</p>
+      </div>
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric-box reveal">
+        <div class="metric-number">340+</div>
+        <div class="metric-label">Leads Per Month</div>
+      </div>
+      <div class="metric-box reveal reveal-delay-1">
+        <div class="metric-number">6×</div>
+        <div class="metric-label">Average ROAS</div>
+      </div>
+      <div class="metric-box reveal reveal-delay-2">
+        <div class="metric-number">90d</div>
+        <div class="metric-label">To Full System Live</div>
+      </div>
+      <div class="metric-box reveal reveal-delay-3">
+        <div class="metric-number">47+</div>
+        <div class="metric-label">Trade Businesses Scaled</div>
+      </div>
+    </div>
+
+    <div class="urgency-block reveal">
+      <div class="urgency-inner">
+        <div class="urgency-left">
+          <div class="urgency-tag">⚠️ This Is Your Competition Right Now</div>
+          <h3 class="urgency-headline">Every Day Without a System<br>Is Revenue Walking Out the Door</h3>
+          <p class="urgency-body">While you're relying on referrals, your competitors are running ads, capturing your ideal clients, and building systems that generate leads 24/7. The gap is growing. The question is: how long will you wait?</p>
+          <ul class="urgency-list">
+            <li><span class="check">✓</span> Your clients are searching online — right now</li>
+            <li><span class="check">✓</span> Your competitors are already running ads targeting them</li>
+            <li><span class="check">✓</span> Every week without a system is a week of lost revenue</li>
+            <li><span class="check">✓</span> Spots are limited — we work with select businesses only</li>
+          </ul>
+          <a href="#cta" class="btn-primary" style="margin-top:2rem; display:inline-flex;">Claim Your Spot Now →</a>
+        </div>
+        <div class="urgency-right">
+          <div class="urgency-stat-stack">
+            <div class="urgency-stat">
+              <div class="urgency-stat-num">78%</div>
+              <div class="urgency-stat-label">of trade businesses have no active digital marketing system</div>
+            </div>
+            <div class="urgency-divider"></div>
+            <div class="urgency-stat">
+              <div class="urgency-stat-num">3.2×</div>
+              <div class="urgency-stat-label">more revenue generated by businesses with a lead generation system vs those without</div>
+            </div>
+            <div class="urgency-divider"></div>
+            <div class="urgency-stat">
+              <div class="urgency-stat-num">Day 1</div>
+              <div class="urgency-stat-label">is when your system starts working — the moment we go live</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="process-header reveal">
+      <div class="section-label">How We Do It</div>
+      <h2 class="section-title">The Attention Mansion System™</h2>
+      <div class="am-system-title">Build → Identify → Scale → Convert</div>
+      <p class="section-sub" style="margin: 1rem auto 0; text-align:center;">A battle-tested 4-stage system engineered to take a trade business from invisible to fully booked — predictably.</p>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-step-num">1</div>
+        <h3>Build Attention</h3>
+        <p>We create compelling content — video, posts, and ads — that puts your business in front of thousands of the right people in your area. Attention is the first currency of growth.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-step-num">2</div>
+        <h3>Identify Winners</h3>
+        <p>We test and analyse what content and angles drive the most engagement and enquiries. Data, not guesswork. We double down on what's working and cut what isn't.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-step-num">3</div>
+        <h3>Scale With Ads</h3>
+        <p>Once we know what wins, we amplify it with targeted paid advertising. Meta and Google campaigns that bring a predictable flow of qualified leads every single month.</p>
+      </div>
+
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-step-num">4</div>
+        <h3>Convert Into Clients</h3>
+        <p>High-converting funnels and automated WhatsApp follow-up ensure no lead falls through the cracks. Every enquiry is nurtured into a booked job and paying client.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-grid-lines"></div>
+  <div class="cta-inner">
+    <div class="section-label reveal">Ready To Grow?</div>
+    <h2 class="cta-title reveal reveal-delay-1">
+      Let's Build Your
+      <em>Client Machine</em>
+    </h2>
+    <p class="cta-sub reveal reveal-delay-2">
+      Stop relying on referrals. Stop wasting money on boosted posts. Let's build a real system that generates leads and clients for your business — month after month.
+    </p>
+    <div class="cta-actions reveal reveal-delay-3">
+      <a href="tel:+27000000000" class="btn-primary">📞 Book a Strategy Call</a>
+      <a href="https://wa.me/27000000000" class="btn-primary" style="background: #1d4ed8;">💬 WhatsApp Us</a>
+    </div>
+    <p class="cta-note reveal reveal-delay-4">Free 30-minute strategy session · No fluff · No obligation</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <a href="#" class="footer-logo">STAAL<span>KRAG</span></a>
+        <p class="footer-tagline">We build client machines for trade and service businesses. Your growth is our only metric.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="Instagram">in</a>
+          <a href="#" class="social-link" title="LinkedIn">li</a>
+          <a href="#" class="social-link" title="TikTok">tk</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Lead Generation</a></li>
+          <li><a href="#services">Content Creation</a></li>
+          <li><a href="#services">Websites & Funnels</a></li>
+          <li><a href="#services">CRM & WhatsApp</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#industries">Automotive</a></li>
+          <li><a href="#industries">Trade Services</a></li>
+          <li><a href="#industries">Industrial</a></li>
+          <li><a href="#industries">See All Industries</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="contact-item">
+          <div>
+            <strong>Email</strong>
+            <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b737e7777745b686f7a7a7770697a7c35787435617a">[email&#160;protected]</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div>
+            <strong>WhatsApp</strong>
+            +27 000 000 0000
+          </div>
+        </div>
+        <div class="contact-item">
+          <div>
+            <strong>Location</strong>
+            South Africa
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Staalkrag Agency. All rights reserved.</p>
+      <p class="footer-brand-statement">Strength in Marketing. Steel in Results.</p>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Hero elements visible on load
+  window.addEventListener('load', () => {
+    document.querySelectorAll('#hero .reveal').forEach(el => {
+      el.classList.add('visible');
+    });
+  });
+
+  // Scrolled nav
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.5)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Number counter animation
+  function animateCounters() {
+    document.querySelectorAll('.metric-number').forEach(el => {
+      const text = el.textContent;
+      const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+      const suffix = text.replace(/[0-9.]/g, '');
+      if (!num) return;
+      let start = 0;
+      const duration = 1800;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = (num < 10 ? (eased * num).toFixed(0) : Math.floor(eased * num)) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  const resultsSection = document.querySelector('#results');
+  let countersRun = false;
+  const counterObserver = new Intersecti
