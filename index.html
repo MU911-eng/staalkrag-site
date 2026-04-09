@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Staalkrag Agency — Digital Marketing for Trades &amp; Automotive</title>
+  <meta name="description" content="Staalkrag Agency gets trades and automotive businesses in Gauteng more customers through digital marketing. Panel beaters, mechanics, plumbers and more."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black:   #0B0C0E;
+      --surface: #13151A;
+      --card:    #1C1F27;
+      --border:  rgba(255,255,255,0.07);
+      --orange:  #FF5C00;
+      --orange2: #FF8C42;
+      --white:   #F5F3EE;
+      --muted:   #8A8F9E;
+      --fd: 'Barlow Condensed', sans-serif;
+      --fb: 'Barlow', sans-serif;
+      --wa: #25D366;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { background: var(--black); color: var(--white); font-family: var(--fb); font-size: 16px; line-height: 1.65; overflow-x: hidden; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 72px 0; }
+    h1,h2,h3,h4 { font-family: var(--fd); font-weight: 900; text-transform: uppercase; line-height: 1; }
+    h1 { font-size: clamp(48px, 11vw, 112px); }
+    h2 { font-size: clamp(38px, 7vw, 72px); }
+    h4 { font-size: clamp(18px, 3vw, 22px); font-weight: 800; }
+    a  { color: inherit; text-decoration: none; }
+    p  { line-height: 1.7; }
+    .tag { display: inline-block; font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); background: rgba(255,92,0,0.10); border: 1px solid rgba(255,92,0,0.25); padding: 5px 12px; border-radius: 2px; }
+    .btn-wa { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: var(--wa); color: #fff; font-family: var(--fd); font-size: 17px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 16px 32px; border-radius: 3px; min-height: 56px; min-width: 220px; transition: background 0.2s, transform 0.15s; -webkit-tap-highlight-color: transparent; }
+    .btn-wa:hover { background: #1db954; transform: translateY(-2px); }
+    .btn-wa:active { transform: translateY(0); }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; background: var(--orange); color: #fff; font-family: var(--fd); font-size: 17px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 16px 32px; border-radius: 3px; min-height: 56px; transition: background 0.2s, transform 0.15s; -webkit-tap-highlight-color: transparent; }
+    .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; font-family: var(--fd); font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); border-bottom: 1.5px solid rgba(255,255,255,0.25); padding-bottom: 2px; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+    .wa-icon { flex-shrink: 0; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 14px 0; border-bottom: 1px solid var(--border); background: rgba(11,12,14,0.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: var(--fd); font-size: 22px; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; }
+    .logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta { background: var(--wa) !important; color: #fff !important; padding: 9px 18px; border-radius: 3px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s; }
+    .nav-cta:hover { background: #1db954 !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: 0.25s; }
+    .mobile-menu { display: none; flex-direction: column; position: fixed; top: 61px; left: 0; right: 0; background: rgba(11,12,14,0.98); border-bottom: 1px solid var(--border); padding: 20px; gap: 4px; z-index: 199; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: var(--fd); font-size: 20px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .mobile-menu a:last-child { border-bottom: none; color: var(--wa); }
+    #hero { min-height: 100svh; display: flex; align-items: flex-end; padding-top: 80px; padding-bottom: 64px; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background: var(--black); background-image: linear-gradient(rgba(255,92,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,92,0,0.04) 1px, transparent 1px); background-size: 56px 56px; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 55% at 60% 40%, rgba(255,92,0,0.08) 0%, transparent 70%); }
+    .hero-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, var(--black) 100%); }
+    .hero-accent { position: absolute; top: 0; left: 0; width: 3px; height: 200px; background: linear-gradient(to bottom, var(--orange), transparent); }
+    .hero-watermark { position: absolute; bottom: -10px; right: -10px; font-family: var(--fd); font-weight: 900; font-size: clamp(100px, 16vw, 260px); text-transform: uppercase; letter-spacing: -0.04em; color: rgba(255,255,255,0.02); line-height: 1; pointer-events: none; user-select: none; z-index: 1; }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .hero-line { width: 40px; height: 2px; background: var(--orange); flex-shrink: 0; }
+    .hero-eyebrow-text { font-family: var(--fd); font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); }
+    .hero-title { margin-bottom: 24px; }
+    .hero-title em { font-style: normal; color: var(--orange); }
+    .hero-sub { max-width: 500px; font-size: clamp(16px, 2.2vw, 18px); color: rgba(245,243,238,0.65); margin-bottom: 40px; line-height: 1.75; }
+    .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .marquee-strip { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--surface); padding: 14px 0; }
+    .marquee-inner { display: flex; gap: 56px; white-space: nowrap; animation: marquee 22s linear infinite; width: max-content; }
+    .marquee-item { font-family: var(--fd); font-size: 14px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 16px; }
+    .marquee-item::after { content: '●'; font-size: 7px; color: var(--orange); }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    #problem { background: var(--surface); position: relative; overflow: hidden; }
+    #problem::before { content: ''; position: absolute; right: -100px; top: -100px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(255,92,0,0.06) 0%, transparent 70%); pointer-events: none; }
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .problem-text p { color: rgba(245,243,238,0.65); margin-bottom: 18px; }
+    .problem-text p:last-child { margin-bottom: 0; }
+    .problem-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .stat-box { background: var(--card); padding: 32px 24px; position: relative; overflow: hidden; transition: background 0.25s; }
+    .stat-box::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--orange); opacity: 0; transition: opacity 0.25s; }
+    .stat-box:hover { background: #20232c; }
+    .stat-box:hover::before { opacity: 1; }
+    .stat-number { font-family: var(--fd); font-size: 48px; font-weight: 900; color: var(--orange); line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    #serve { position: relative; }
+    .serve-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-bottom: 56px; }
+    .serve-intro p { color: rgba(245,243,238,0.65); }
+    .serve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .serve-card { background: var(--card); padding: 40px 32px; position: relative; overflow: hidden; transition: background 0.25s, transform 0.25s; border-bottom: 3px solid transparent; }
+    .serve-card:hover { background: #20242f; transform: translateY(-4px); border-bottom-color: var(--orange); }
+    .serve-card::before { content: ''; position: absolute; top: 0; right: 0; width: 56px; height: 56px; background: linear-gradient(225deg, rgba(255,92,0,0.10) 0%, transparent 60%); }
+    .serve-card-icon { font-size: 28px; margin-bottom: 18px; display: block; }
+    .serve-card-title { font-family: var(--fd); font-size: 22px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; line-height: 1.1; }
+    .serve-card-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .serve-card-num { position: absolute; bottom: 10px; right: 14px; font-family: var(--fd); font-size: 44px; font-weight: 900; color: rgba(255,255,255,0.03); line-height: 1; user-select: none; }
+    #services { background: var(--surface); }
+    .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: end; margin-bottom: 48px; }
+    .services-header p { color: rgba(245,243,238,0.60); font-size: 15px; line-height: 1.75; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .service-item { background: var(--card); padding: 40px 32px; position: relative; overflow: hidden; transition: background 0.25s; }
+    .service-item::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease; }
+    .service-item:hover { background: #20232c; }
+    .service-item:hover::after { transform: scaleX(1); }
+    .service-num { font-family: var(--fd); font-size: 54px; font-weight: 900; color: rgba(255,92,0,0.07); line-height: 1; margin-bottom: -4px; display: block; }
+    .service-icon { font-size: 28px; margin-bottom: 14px; }
+    .service-title { font-family: var(--fd); font-size: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; line-height: 1.1; }
+    .service-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    #system { position: relative; overflow: hidden; }
+    #system::before { content: ''; position: absolute; left: -180px; bottom: -180px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,92,0,0.05) 0%, transparent 65%); pointer-events: none; }
+    .system-top { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; margin-bottom: 56px; }
+    .system-top p { color: rgba(245,243,238,0.65); margin-top: 22px; line-height: 1.8; }
+    .system-brand-block { background: var(--surface); border: 1px solid var(--border); padding: 48px 40px; position: relative; overflow: hidden; }
+    .system-brand-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(to right, var(--orange), transparent); }
+    .system-brand-label { font-family: var(--fd); font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+    .system-brand-block h3 { font-family: var(--fd); font-size: 34px; font-weight: 900; text-transform: uppercase; line-height: 1.05; margin-bottom: 18px; }
+    .system-brand-block p { font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0; }
+    .system-brand-wm { position: absolute; bottom: -8px; right: -8px; font-family: var(--fd); font-size: 72px; font-weight: 900; color: rgba(255,255,255,0.03); text-transform: uppercase; line-height: 1; pointer-events: none; user-select: none; }
+    .pillars-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .pillar { background: var(--card); padding: 32px 26px; position: relative; overflow: hidden; transition: transform 0.25s; }
+    .pillar:hover { transform: translateY(-4px); }
+    .pillar-num { font-family: var(--fd); font-size: 72px; font-weight: 900; color: rgba(255,92,0,0.06); line-height: 0.9; margin-bottom: 10px; }
+    .pillar-label { font-family: var(--fd); font-size: 26px; font-weight: 900; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+    .pillar-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .system-footer { margin-top: 40px; display: flex; align-items: center; gap: 18px; padding: 24px 32px; background: var(--surface); border: 1px solid rgba(255,92,0,0.18); }
+    .system-footer-icon { font-size: 28px; flex-shrink: 0; }
+    .system-footer-text { font-size: 15px; color: rgba(245,243,238,0.68); }
+    .system-footer-text strong { color: var(--orange); }
+    #process { background: var(--surface); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 52px; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 28px; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, rgba(255,92,0,0.3), transparent); }
+    .process-step { padding: 24px 28px 28px; border-left: 1px solid var(--border); }
+    .process-step:first-child { border-left: none; }
+    .process-step-num { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; color: var(--orange); margin-bottom: 18px; }
+    .process-step h4 { font-family: var(--fd); font-size: 20px; font-weight: 800; text-transform: uppercase; margin-bottom: 10px; }
+    .process-step p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 52px; }
+    .pricing-card { background: var(--card); padding: 48px 40px; position: relative; overflow: hidden; }
+    .pricing-card.featured { background: var(--surface); border: 1px solid rgba(255,92,0,0.28); }
+    .pricing-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: 0; right: 0; background: var(--orange); color: #fff; font-family: var(--fd); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; padding: 5px 14px; }
+    .pricing-label { font-family: var(--fd); font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+    .pricing-from { font-family: var(--fd); font-size: 14px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+    .pricing-price { font-family: var(--fd); font-size: 58px; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+    .pricing-price sup { font-size: 24px; font-weight: 700; vertical-align: top; margin-top: 10px; display: inline-block; }
+    .pricing-billing { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .pricing-features { list-style: none; margin-bottom: 40px; }
+    .pricing-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: rgba(245,243,238,0.75); padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li::before { content: '—'; color: var(--orange); font-weight: 700; flex-shrink: 0; }
+    #cta { text-align: center; position: relative; overflow: hidden; }
+    .cta-bg { position: absolute; inset: 0; background: var(--surface); background-image: linear-gradient(rgba(255,92,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,92,0,0.05) 1px, transparent 1px); background-size: 72px 72px; }
+    .cta-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 65% 65% at 50% 50%, rgba(255,92,0,0.08) 0%, var(--surface) 70%); }
+    .cta-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+    .cta-inner .tag { margin-bottom: 22px; }
+    .cta-inner h2 { margin-bottom: 18px; }
+    .cta-inner p { color: rgba(245,243,238,0.60); font-size: 17px; margin-bottom: 40px; line-height: 1.75; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .cta-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .cta-note { margin-top: 20px; font-size: 13px; color: var(--muted); }
+    .cta-note a { color: var(--white); border-bottom: 1px solid rgba(255,255,255,0.2); }
+    footer { background: var(--surface); border-top: 1px solid var(--border); padding: 52px 0 28px; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 52px; margin-bottom: 52px; }
+    .footer-logo { font-family: var(--fd); font-size: 24px; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; display: block; margin-bottom: 14px; }
+    .footer-logo span { color: var(--orange); }
+    .footer-brand p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 240px; }
+    .footer-col h5 { font-family: var(--fd); font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 11px; }
+    .footer-col ul li a { font-size: 14px; color: var(--muted); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    .wa-float { display: none; position: fixed; bottom: 20px; right: 20px; z-index: 300; background: var(--wa); color: #fff; width: 58px; height: 58px; border-radius: 50%; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.40); -webkit-tap-highlight-color: transparent; }
+    .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.10s; } .d2 { transition-delay: 0.20s; } .d3 { transition-delay: 0.30s; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; } .hamburger { display: flex; } .wa-float { display: flex; }
+      section { padding: 56px 0; }
+      #hero { padding-bottom: 56px; }
+      .hero-sub { font-size: 16px; margin-bottom: 32px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hero-actions .btn-wa, .hero-actions .btn-ghost { width: 100%; justify-content: center; }
+      .btn-wa, .btn-primary { min-width: unset; width: 100%; }
+      .problem-grid, .serve-intro, .services-header, .system-top, .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .problem-stats, .serve-grid, .services-grid, .pillars-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+      .pricing-grid { grid-template-columns: 1fr; gap: 3px; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .process-step { border-left: none; border-top: 1px solid var(--border); padding: 20px; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .cta-actions .btn-wa, .cta-actions .btn-ghost { width: 100%; max-width: 360px; justify-content: center; }
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      .stat-box { padding: 24px 18px; } .stat-number { font-size: 40px; }
+      .serve-card, .service-item { padding: 28px 22px; }
+      .pricing-card { padding: 36px 28px; }
+      h2 { font-size: clamp(34px, 9vw, 56px); }
+    }
+    @media (max-width: 480px) {
+      .problem-stats, .serve-grid, .services-grid, .pillars-grid, .process-steps { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(44px, 13vw, 72px); }
+      .container { padding: 0 16px; }
+    }
+    @media (min-width: 769px) { .hamburger { display: none !important; } }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="container nav-inner">
+    <a href="#" class="logo">Staal<span>krag</span></a>
+    <div class="nav-links">
+      <a href="#serve">Who We Serve</a>
+      <a href="#services">Services</a>
+      <a href="#system">Our System</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://wa.me/27681927950?text=Hi%20Staalkrag%2C%20I%20want%20more%20customers" target="_blank" rel="noopener" class="nav-cta">WhatsApp Us</a>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#serve" onclick="toggleMenu()">Who We Serve</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#system" onclick="toggleMenu()">Our System</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="https://wa.me/27681927950?text=Hi%20Staalkrag%2C%20I%20want%20more%20customers" target="_blank" rel="noopener" onclick="toggleMenu()">WhatsApp Us →</a>
+</div>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-watermark">Staalkrag</div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-line"></div>
+      <span class="hero-eyebrow-text">Gauteng's Trade &amp; Auto Digital Agency</span>
+    </div>
+    <h1 class="hero-title">MORE CUSTOMERS.<br/>EVERY<br/><em>MONTH.</em></h1>
+    <p class="hero-sub">We get trades and automotive businesses found online — so your phone rings with real customers, not empty clicks.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/27681927950?text=Hi%20Staalkrag%2C%20I%20want%20more%20customers" class="btn-wa" target="_blank" rel="noopener">
+        <svg class="wa-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.117 1.532 5.845L.057 23.429a.5.5 0 0 0 .609.619l5.741-1.503A11.948 11.948 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.514-5.241-1.411l-.375-.214-3.878 1.016 1.035-3.773-.233-.387A9.946 9.946 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Get More Customers
+      </a>
+      <a href="#system" class="btn-ghost">See How It Works</a>
+    </div>
+  </div>
+</section>
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <span class="marquee-item">Panel Beaters</span><span class="marquee-item">Mechanics</span><span class="marquee-item">Windscreen Repair</span><span class="marquee-item">Plumbers</span><span class="marquee-item">Commercial Repair</span><span class="marquee-item">Auto Electricians</span><span class="marquee-item">Tyre Fitment</span><span class="marquee-item">Spray Painters</span><span class="marquee-item">Diesel Mechanics</span><span class="marquee-item">Panel Beaters</span><span class="marquee-item">Mechanics</span><span class="marquee-item">Windscreen Repair</span><span class="marquee-item">Plumbers</span><span class="marquee-item">Commercial Repair</span><span class="marquee-item">Auto Electricians</span><span class="marquee-item">Tyre Fitment</span><span class="marquee-item">Spray Painters</span><span class="marquee-item">Diesel Mechanics</span>
+  </div>
+</div>
+<section id="problem">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-text fade-up">
+        <div class="tag" style="margin-bottom:18px">The Reality</div>
+        <h2>YOUR COMPETITOR<br/>IS ALREADY<br/><span style="color:var(--orange)">ONLINE.</span></h2>
+        <p style="margin-top:24px">Your next customer is on Google right now. If you don't show up, they call someone else — whether that someone is better than you or not.</p>
+        <p>Word-of-mouth alone won't grow your business anymore. You need to be found online, 24/7.</p>
+        <p>That's exactly what we do.</p>
+      </div>
+      <div class="problem-stats fade-up d1">
+        <div class="stat-box"><div class="stat-number">97%</div><div class="stat-label">of people search online before hiring a local trade or auto business</div></div>
+        <div class="stat-box"><div class="stat-number">3s</div><div class="stat-label">is all it takes for a customer to decide whether to trust your business</div></div>
+        <div class="stat-box"><div class="stat-number">R0</div><div class="stat-label">earned from every customer who searched for you and couldn't find you</div></div>
+        <div class="stat-box"><div class="stat-number">1st</div><div class="stat-label">page of Google is the only page that counts — we put you there</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="serve">
+  <div class="container">
+    <div class="serve-intro">
+      <div class="fade-up">
+        <div class="tag" style="margin-bottom:18px">Who We Serve</div>
+        <h2>BUILT FOR<br/><span style="color:var(--orange)">TRADE &amp;<br/>AUTO</span></h2>
+      </div>
+      <div class="fade-up d1" style="padding-top:12px">
+        <p>We don't spread thin across every industry. Staalkrag works exclusively with automotive and trades businesses in Gauteng — we know your customers and what it takes to fill your schedule.</p>
+        <p style="margin-top:12px; color:rgba(245,243,238,0.40); font-size:14px;">Johannesburg · Pretoria · Surrounding areas</p>
+      </div>
+    </div>
+    <div class="serve-grid">
+      <div class="serve-card fade-up"><span class="serve-card-icon">🔧</span><div class="serve-card-title">Panel Beaters</div><p class="serve-card-desc">Show up the moment a customer needs accident repairs. Get found fast, get the job.</p><div class="serve-card-num">01</div></div>
+      <div class="serve-card fade-up d1"><span class="serve-card-icon">⚙️</span><div class="serve-card-title">Mechanics</div><p class="serve-card-desc">Turn "mechanic near me" searches into booked appointments, every single day.</p><div class="serve-card-num">02</div></div>
+      <div class="serve-card fade-up d2"><span class="serve-card-icon">🪟</span><div class="serve-card-title">Windscreen &amp; Auto Glass</div><p class="serve-card-desc">Capture urgent searches the moment a windscreen cracks. Speed = revenue.</p><div class="serve-card-num">03</div></div>
+      <div class="serve-card fade-up"><span class="serve-card-icon">🔩</span><div class="serve-card-title">Plumbers</div><p class="serve-card-desc">Be the first number a customer calls in an emergency. We make that happen.</p><div class="serve-card-num">04</div></div>
+      <div class="serve-card fade-up d1"><span class="serve-card-icon">🏗️</span><div class="serve-card-title">Commercial Repair</div><p class="serve-card-desc">Win bigger contracts with a professional online presence that builds trust.</p><div class="serve-card-num">05</div></div>
+      <div class="serve-card fade-up d2"><span class="serve-card-icon">⚡</span><div class="serve-card-title">Auto Electricians</div><p class="serve-card-desc">Dominate local searches and become the go-to auto electrician in your area.</p><div class="serve-card-num">06</div></div>
+    </div>
+  </div>
+</section>
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="fade-up"><div class="tag" style="margin-bottom:18px">What We Do</div><h2>EVERYTHING TO<br/><span style="color:var(--orange)">WIN ONLINE</span></h2></div>
+      <div class="fade-up d1"><p>One agency. One niche. We handle your entire digital presence — so you can focus on the work, not the marketing.</p></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-item fade-up"><span class="service-num">01</span><div class="service-icon">🌐</div><div class="service-title">Professional Website</div><p class="service-desc">Fast, mobile-ready, and built to convert. Not a template — a site that works as hard as you do.</p></div>
+      <div class="service-item fade-up d1"><span class="service-num">02</span><div class="service-icon">📍</div><div class="service-title">Google Business &amp; Local SEO</div><p class="service-desc">When a customer searches your trade in your area, your business shows up first — not your competitor's.</p></div>
+      <div class="service-item fade-up d2"><span class="service-num">03</span><div class="service-icon">📲</div><div class="service-title">Social Media Management</div><p class="service-desc">Regular, professional posts on Facebook and Instagram that build trust and keep you top-of-mind.</p></div>
+      <div class="service-item fade-up"><span class="service-num">04</span><div class="service-icon">🎯</div><div class="service-title">Paid Advertising</div><p class="service-desc">Google and Facebook Ads aimed at customers ready to pay — not just browse. No wasted spend.</p></div>
+      <div class="service-item fade-up d1"><span class="service-num">05</span><div class="service-icon">📊</div><div class="service-title">Monthly Mansion Report™</div><p class="service-desc">Plain-language monthly report. What we did. What worked. What's next. No jargon, ever.</p></div>
+      <div class="service-item fade-up d2"><span class="service-num">06</span><div class="service-icon">💬</div><div class="service-title">WhatsApp Lead Integration</div><p class="service-desc">Customers go from your website to your WhatsApp in one tap. Never miss a lead after hours.</p></div>
+    </div>
+  </div>
+</section>
+<section id="system">
+  <div class="container">
+    <div class="system-top">
+      <div class="fade-up">
+        <div class="tag" style="margin-bottom:18px">Our Approach</div>
+        <h2>THE ATTENTION<br/>MANSION<br/><span style="color:var(--orange)">SYSTEM™</span></h2>
+        <p>Four pillars. One outcome: your phone rings with the right customers. Not a campaign — a growth engine that compounds every month.</p>
+      </div>
+      <div class="system-brand-block fade-up d1">
+        <div class="system-brand-label">Proprietary Framework</div>
+        <h3>Attention<br/>Mansion<br/>System™</h3>
+        <p>Built for trades and auto businesses. Get found, get trusted, get booked — on repeat.</p>
+        <div class="system-brand-wm">AMS</div>
+      </div>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar fade-up"><div class="pillar-num">01</div><div class="pillar-label">Attention</div><p class="pillar-desc">Get in front of the right customers in your area — people actively searching for what you do.</p></div>
+      <div class="pillar fade-up d1"><div class="pillar-num">02</div><div class="pillar-label">Intelligence</div><p class="pillar-desc">Track what works, cut what doesn't. Every rand you spend is backed by real data.</p></div>
+      <div class="pillar fade-up d2"><div class="pillar-num">03</div><div class="pillar-label">Scale</div><p class="pillar-desc">Once we know what drives results, we scale it. More reach, more leads, more jobs.</p></div>
+      <div class="pillar fade-up d3"><div class="pillar-num">04</div><div class="pillar-label">Conversion</div><p class="pillar-desc">Traffic is worthless without bookings. We turn visits and enquiries into paying customers.</p></div>
+    </div>
+    <div class="system-footer fade-up">
+      <div class="system-footer-icon">📋</div>
+      <div class="system-footer-text">Every month you get your <strong>Mansion Report™</strong> — plain-language results, leads generated, and the plan ahead. Clear. Accountable. No jargon.</div>
+    </div>
+  </div>
+</section>
+<section id="process">
+  <div class="container">
+    <div class="fade-up"><div class="tag" style="margin-bottom:18px">How It Works</div><h2>FIRST LEAD<br/>IN <span style="color:var(--orange)">7 DAYS.</span></h2></div>
+    <div class="process-steps">
+      <div class="process-step fade-up"><div class="process-step-num">STEP 01</div><h4>Discovery Call</h4><p>We learn your business, your area, and the customers you want. Your strategy is built around you — no templates.</p></div>
+      <div class="process-step fade-up d1"><div class="process-step-num">STEP 02</div><h4>Setup &amp; Build</h4><p>Website, Google Business, social media, tracking — your full digital foundation live within 7 days.</p></div>
+      <div class="process-step fade-up d2"><div class="process-step-num">STEP 03</div><h4>Launch &amp; Activate</h4><p>We go live. Ads on, content publishing, traffic flowing to your business immediately.</p></div>
+      <div class="process-step fade-up d3"><div class="process-step-num">STEP 04</div><h4>Report &amp; Grow</h4><p>Monthly Mansion Report™ lands in your inbox. Results reviewed, optimised, scaled. Repeat.</p></div>
+    </div>
+  </div>
+</section>
+<section id="pricing" style="background:var(--surface);">
+  <div class="container">
+    <div class="fade-up">
+      <div class="tag" style="margin-bottom:18px">Pricing</div>
+      <h2>CLEAR PRICING.<br/><span style="color:var(--orange)">NO SURPRISES.</span></h2>
+      <p style="margin-top:16px; color:var(--muted); max-width:480px; font-size:15px;">No lock-ins. No hidden fees. A straightforward investment in getting more customers.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-label">Once-Off Setup</div>
+        <div class="pricing-price"><sup>R</sup>4,500</div>
+        <div class="pricing-billing">One-time · paid on sign-on</div>
+        <ul class="pricing-features">
+          <li>Professional website built &amp; launched</li>
+          <li>Google Business Profile set up &amp; verified</li>
+          <li>Social media profiles branded</li>
+          <li>WhatsApp lead integration</li>
+          <li>Analytics &amp; tracking installed</li>
+          <li>7-day delivery guarantee</li>
+        </ul>
+        <a href="https://wa.me/27681927950?text=Hi%20Staalkrag%2C%20I%27m%20interested%20in%20the%20setup%20package" class="btn-wa" target="_blank" rel="noopener">
+          <svg class="wa-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.117 1.532 5.845L.057 23.429a.5.5 0 0 0 .609.619l5.741-1.503A11.948 11.948 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.514-5.241-1.411l-.375-.214-3.878 1.016 1.035-3.773-.233-.387A9.946 9.946 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Get Started
+        </a>
+      </div>
+      <div class="pricing-card featured fade-up d1">
+        <div class="pricing-label">Monthly Retainer</div>
+        <div class="pricing-from">Starting from</div>
+        <div class="pricing-price"><sup>R</sup>2,000<span style="font-size:26px;color:var(--muted)">/mo</span></div>
+        <div class="pricing-billing">Billed monthly · cancel anytime</div>
+        <ul class="pricing-features">
+          <li>Social media management (4–8 posts/month)</li>
+          <li>Google &amp; Facebook Ads management</li>
+          <li>Local SEO optimisation (ongoing)</li>
+          <li>Monthly Mansion Report™</li>
+          <li>WhatsApp support &amp; check-ins</li>
+          <li>Strategy review every 90 days</li>
+          <li>Dedicated account management</li>
+        </ul>
+        <a href="https://wa.me/27681927950?text=Hi%20Staalkrag%2C%20I%27m%20interested%20in%20the%20monthly%20retainer" class="btn-primary" target="_blank" rel="noopener">Get More Customers</a>
+      </div>
+    </div>
+    <p style="margin-top:24px; color:var(--muted); font-size:13px; text-align:center;">Pricing tailored per client. Final retainer depends on scope and ad budget. <a href="https://wa.me/27681927950" target="_blank" rel="noopener" style="color:var(--white); border-bottom:1px solid rgba(255,255,255,0.2)">WhatsApp us for a quote.</a></p>
+  </div>
+</section>
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="container">
+    <div class="cta-inner fade-up">
+      <div class="tag">Ready?</div>
+      <h2 style="margin-top:20px">YOUR COMPETITOR<br/>WON'T WAIT.<br/><span style="color:var(--orange)">NEITHER SHOULD YOU.</span></h2>
+      <p>One conversation. No pressure. We'll show you exactly what it takes to get more customers calling your number.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/27681927950?text=Hi%20Staalkrag%2C%20I%20want%20more%20customers" class="btn-wa" target="_blank" rel="noopener">
+          <svg class="wa-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.117 1.532 5.845L.057 23.429a.5.5 0 0 0 .609.619l5.741-1.503A11.948 11.948 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.514-5.241-1.411l-.375-.214-3.878 1.016 1.035-3.773-.233-.387A9.946 9.946 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          WhatsApp Us Now
+        </a>
+        <a href="mailto:info@staalkrag.co.za" class="btn-ghost">
+          info@staalkrag.co.za
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <p class="cta-note">Or call us directly on <a href="https://wa.me/27681927950">068 192 7950</a></p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">Staal<span>krag</span></span>
+        <p>Digital marketing built exclusively for automotive and trades businesses in Gauteng. Get found. Get called. Get booked.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="#serve">Who We Serve</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#system">The System</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="https://wa.me/27681927950" target="_blank" rel="noopener">068 192 7950 (WhatsApp)</a></li>
+          <li><a href="mailto:info@staalkrag.co.za">info@staalkrag.co.za</a></li>
+          <li><a href="#serve">Gauteng, South Africa</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Staalkrag Agency. All rights reserved.</span>
+      <span>Built for Gauteng's trades &amp; auto businesses.</span>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/27681927950?text=Hi%20Staalkrag%2C%20I%20want%20more%20customers" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp Us">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.117 1.532 5.845L.057 23.429a.5.5 0 0 0 .609.619l5.741-1.503A11.948 11.948 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.698-.514-5.241-1.411l-.375-.214-3.878 1.016 1.035-3.773-.233-.387A9.946 9.946 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var menu = document.getElementById('mobileMenu');
+    var hamburger = document.getElementById('hamburger');
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+    });
+  }, { threshold: 0.10 });
+  document.querySelectorAll('.fade-up').forEach(function(el) { obs.observe(el); });
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY;
+    sections.forEach(function(sec) {
+      var top = sec.offsetTop - 90;
+      var bot = top + sec.offsetHeight;
+      var id = sec.getAttribute('id');
+      navLinks.forEach(function(link) {
+        if (link.getAttribute('href') === '#' + id) {
+          link.style.color = (scrollY >= top && scrollY < bot) ? 'var(--white)' : '';
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
